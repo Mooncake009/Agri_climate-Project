@@ -31,9 +31,17 @@ The objective was to analyze these effects, uncover region-specific trends, and 
 
 ## Project Scope 
 ### Exploratory Data Analysis (EDA):
-Examined year-on-year trends for crop yields across different countries.
-Analyzed how average temperature and precipitation changed over the same period.
-Explored possible patterns by visually comparing agricultural yield trends against climate trends to check for potential correlations (e.g., declining yields with rising temperatures).
+- Examined year-on-year trends for crop yields across different countries.
+- Analyzed how average temperature and precipitation changed over the same period.
+- Which countries have seen the biggest increase/decrease in yield over time?
+- Explored possible patterns by visually comparing agricultural yield trends against climate trends to check for potential correlations (e.g., declining yields with rising temperatures).
+  ```sql
+  --Which countries have seen the biggest increase/decrease in yield over time?
+  select [Country ], MIN([Year ]) Start_year, max([Year ]) End_year, (MAX([Yield (t)]) - MIN([Yield (t)])) Yield_change 
+  from [dbo].[agri_data$]
+  group by [Country ]
+  order by Yield_change desc
+  ```
 
 ### Data Analysis:
 - Merged agricultural and climate datasets for a unified view.
